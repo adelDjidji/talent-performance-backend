@@ -10,6 +10,8 @@ router.get('/user', function(req, res) {
 
 router.post('/insert', objectifsDAO.insert)
 
+router.post('/update/:id', objectifsDAO.update)
+
 router.post('/affect/:id_user', objectifsDAO.affect)
 
 router.post('/insert_coll', objectifsDAO.insert_collectif)

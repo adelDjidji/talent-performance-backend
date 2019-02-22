@@ -9,6 +9,12 @@ var usersRouter = require('./routes/users');
 var objectifsRouter = require('./routes/objectifs');
 var businessRouter = require('./routes/business');
 var meetingsRouter = require('./routes/meetings');
+var directionsRouter = require('./routes/directions');
+var servicesRouter = require('./routes/services');
+var departementsRouter = require('./routes/departements');
+var entitesRouter = require('./routes/entites');
+var communRouter = require('./routes/commun');
+
 
 var app = express();
 var cors = require('cors');
@@ -55,10 +61,15 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRouter);
+app.use('/', communRouter);
 app.use('/business', businessRouter);
 app.use('/user', usersRouter);
 app.use('/objectif', objectifsRouter);
 app.use('/meeting', meetingsRouter);
+app.use('/service', servicesRouter);
+app.use('/direction', directionsRouter);
+app.use('/departement', departementsRouter);
+app.use('/entite', entitesRouter);
 
 
 

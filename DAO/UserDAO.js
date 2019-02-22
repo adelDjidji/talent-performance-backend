@@ -1,4 +1,7 @@
-var knex = require('../config/db').database
+var knex = require('../config/db').database;
+var formidable = require('formidable');
+var fs = require('fs');
+
 
 
  var getBUByEntite = require('./BU_DAO').getBUByEntite
@@ -260,12 +263,27 @@ console.log("GETing list collab of manager: "+id_manager)
 
   },
   insert:function(req, res){
+    console.log("INSERTION USER", req.body)
     var infos=req.body
 
-    knex('users').insert(infos)
-    .then(()=>{
-      res.send(true)
-    })
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function (err, fields, files) {
+      var oldpath = files.filetoupload.path;
+      var newpath = './' + files.filetoupload.name;
+      console.log(files)
+      // fs.rename(oldpath, newpath, function (err) {
+      //   if (err) throw err;
+      //   res.write('File uploaded and moved!');
+      //   res.end();
+      // });
+
+    });
+
+    // knex('users').insert(infos)
+    // .then(()=>{
+    //   res.send(true)
+    // })
 
   },
   affectObj: function(req, res){

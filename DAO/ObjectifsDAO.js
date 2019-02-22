@@ -34,6 +34,15 @@ module.exports= {
         
         console.log("INSERTION OBJ --- END")
     },
+    update:function(req, res){
+        var data = req.body
+        var id = req.params.id
+        knex.from('objectif')
+        update(data).where({id_obj:id})
+        .then((row)=>{
+            res.send(true)
+        })
+    },
 
     affect:function(req, res){
         console.log("AFFECTATION")
