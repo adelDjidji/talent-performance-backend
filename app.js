@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var http = require('http');
+
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,9 +17,19 @@ var servicesRouter = require('./routes/services');
 var departementsRouter = require('./routes/departements');
 var entitesRouter = require('./routes/entites');
 var communRouter = require('./routes/commun');
+var notificationsRouter = require('./routes/notifications');
+var skillsRouter = require('./routes/skills');
+var experiencesRouter = require('./routes/experiences');
+var formationsRouter = require('./routes/formation');
+var configRouter = require('./routes/config');
 
+var authorize = require('./routes/authorize');
 
 var app = express();
+var server = http.createServer(app);
+var io = require('socket.io')(server);
+
+
 var cors = require('cors');
 var bodyParser = require('body-parser')
 
@@ -25,6 +38,32 @@ var bodyParser = require('body-parser')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+
+//use socket io
+app.use(function(req, res, next){
+  // io.on("connection", socket => {
+  //     console.log("New client connected");
+  //     res.socket= socket
+  //     socket.on("disconnect", () => {
+  //       console.log("Client disconnected");
+  //     });
+      
+  //   });
+  res.io = io;
+  next();
+});
+
+// app.use('/io', function(req, res){
+//   io.on("connection", socket => {
+//       console.log("New client connected");
+//       socket.emit("test_resp", 201)
+//       socket.on("disconnect", () => {
+//         console.log("Client disconnected");
+//       });
+      
+//     });
+//     res.send("gii")
+// });
 
 //CORS
 
@@ -70,6 +109,15 @@ app.use('/service', servicesRouter);
 app.use('/direction', directionsRouter);
 app.use('/departement', departementsRouter);
 app.use('/entite', entitesRouter);
+app.use('/notification', notificationsRouter);
+app.use('/skills', skillsRouter);
+app.use('/experiences', experiencesRouter);
+app.use('/formation', formationsRouter);
+app.use('/config', configRouter);
+
+
+
+app.use('/authorize', authorize);
 
 
 
@@ -89,4 +137,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {app, server};

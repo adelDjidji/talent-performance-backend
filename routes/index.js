@@ -4,14 +4,31 @@ var formidable = require('formidable')
 var fs = require('fs')
 
 
+var authHelper = require('../helpers/auth');
+
+/* GET home page. */
+router.get('/auth', function(req, res, next) {
+  let parms = { title: 'Home', active: { home: true } };
+
+  parms.signInUrl = authHelper.getAuthUrl();
+  parms.debug = parms.signInUrl;
+  res.render('auth', parms);
+});
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/test', function(req, res) {
-  console.log(req.body)
-  //res.send(req);
+router.get('/test', function(req, res1) {
+//   var TMClient = require('textmagic-rest-client');
+  
+// var c = new TMClient('username', 'C7XDKZOQZo6HvhJwtUw0MBcslfqwtp4');
+// c.Messages.send({text: 'test message', phones:'+213669479443'}, function(err, res){
+//   res1.send("sent");
+// });
+  
 });
 
 router.post("/upload", function(req, res){
@@ -34,4 +51,11 @@ router.post("/upload", function(req, res){
       res.end();      
     });
 })
+
+router.post('/register', function (req, res) {
+  // console.log("request == ",req.params.username)
+  res.send(req.body);
+  //
+})
+
 module.exports = router;

@@ -1,0 +1,61 @@
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title= title
+    // Bootstrap core CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    
+  body
+    // Nav bar
+    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+      a.navbar-brand(href='/') Node Graph Tutorial
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarCollapse.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+            if active.home 
+                li.nav-item.active
+                a.nav-link(href='/') Home
+            else
+                li.nav-item
+                a.nav-link(href='/') Home
+          |           
+         
+        ul.navbar-nav.justify-content-end
+          
+            if user
+                li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') {{user}}
+                    .dropdown-menu
+                    a.dropdown-item(href='/authorize/signout') Sign Out
+                  
+            else
+                li.nav-item
+                    a.nav-link(href='#{signInUrl}') Sign In
+        
+    // Main body
+    main.container(role='main')
+        body
+            .jumbotron
+                h1 Node Graph Tutorial
+                p.lead
+                    | This sample app shows how to use the Microsoft Graph API to access Outlook data from Node.js
+                if user
+                    p Welcome #{user}!
+                else
+                    a.btn.btn-primary.btn-large(href='#{signInUrl}') Click here to login
+        if debug
+            .card
+            .card-body
+                h5.card-title Debug
+                pre.bg-light.border.p-3(style='word-wrap: break-word;white-space: pre-wrap;')
+                    code #{debug}
+        
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')

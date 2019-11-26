@@ -1,0 +1,60 @@
+Arguments: 
+  /usr/local/Cellar/node/12.4.0/bin/node /usr/local/Cellar/yarn/1.16.0/libexec/bin/yarn.js
+
+PATH: 
+  /usr/local/opt/php@7.2/bin:/usr/local/opt/php@7.2/sbin:/usr/local/opt/php@7.2/bin:/usr/local/opt/php@7.2/bin:/usr/local/opt/php@7.2/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.composer/vendor/bin:/opt/X11/bin:/usr/local/opt/php@7.2/bin:/usr/local/opt/php@7.2/sbin:/Users/mac/anaconda3/bin:/Users/mac/.composer/vendor/bin
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  12.4.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: EACCES: permission denied, unlink '/Users/mac/Documents/PFE/code/App/node_modules/after/.npmignore'
+
+npm manifest: 
+  {
+    "name": "backend2",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "server": "nodemon http-server",
+      "client": "npm start --prefix Client",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "dependencies": {
+      "axios": "^0.19.0",
+      "body-parser": "^1.18.3",
+      "concurrently": "^4.1.0",
+      "cookie-parser": "~1.4.3",
+      "cors": "^2.8.4",
+      "debug": "~2.6.9",
+      "dotenv": "^8.0.0",
+      "express": "~4.16.0",
+      "formidable": "^1.2.1",
+      "fs": "0.0.1-security",
+      "http-errors": "~1.6.2",
+      "http-server": "^0.11.1",
+      "jade": "~1.11.0",
+      "knex": "^0.15.2",
+      "morgan": "~1.9.0",
+      "mysql": "^2.16.0",
+      "nodemon": "^1.18.9",
+      "rc-animate": "^2.8.3",
+      "react-image-fallback": "^8.0.0",
+      "simple-oauth2": "^2.2.1",
+      "socket.io": "^2.2.0"
+    },
+    "devDependencies": {}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
